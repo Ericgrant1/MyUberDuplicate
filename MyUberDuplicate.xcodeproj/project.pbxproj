@@ -14,6 +14,7 @@
 		520876B5244E05760069FD6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 520876B3244E05760069FD6C /* LaunchScreen.storyboard */; };
 		524B3BE6244F5B0A00179DD9 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524B3BE5244F5B0A00179DD9 /* LoginController.swift */; };
 		5285FC91245038DF00561ABA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5285FC90245038DF00561ABA /* Extensions.swift */; };
+		5285FC93245093CD00561ABA /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5285FC92245093CD00561ABA /* SignUpController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		520876B6244E05760069FD6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		524B3BE5244F5B0A00179DD9 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		5285FC90245038DF00561ABA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		5285FC92245093CD00561ABA /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				524B3BE5244F5B0A00179DD9 /* LoginController.swift */,
+				5285FC92245093CD00561ABA /* SignUpController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5285FC93245093CD00561ABA /* SignUpController.swift in Sources */,
 				520876A9244E05730069FD6C /* AppDelegate.swift in Sources */,
 				524B3BE6244F5B0A00179DD9 /* LoginController.swift in Sources */,
 				520876AB244E05730069FD6C /* SceneDelegate.swift in Sources */,
