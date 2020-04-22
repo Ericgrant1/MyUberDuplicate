@@ -28,10 +28,8 @@ class LoginController: UIViewController {
         view.backgroundColor = UIColor.init(red: 25/255, green: 25/255, blue: 25/255, alpha: 1)
         
         view.addSubview(tittleLabel)
-        tittleLabel.translatesAutoresizingMaskIntoConstraints = false
-        tittleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        tittleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
-                                         constant: 0).isActive = true
+        tittleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor)
+        tittleLabel.centerX(inview: view)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
