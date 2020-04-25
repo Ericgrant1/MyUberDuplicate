@@ -15,6 +15,7 @@
 		520876B2244E05760069FD6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 520876B1244E05760069FD6C /* Assets.xcassets */; };
 		520876B5244E05760069FD6C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 520876B3244E05760069FD6C /* LaunchScreen.storyboard */; };
 		524B3BE6244F5B0A00179DD9 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524B3BE5244F5B0A00179DD9 /* LoginController.swift */; };
+		5260AD692454163C0055B62B /* LocationInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5260AD682454163C0055B62B /* LocationInputView.swift */; };
 		5285FC91245038DF00561ABA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5285FC90245038DF00561ABA /* Extensions.swift */; };
 		5285FC93245093CD00561ABA /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5285FC92245093CD00561ABA /* SignUpController.swift */; };
 		5285FC952450BB2100561ABA /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5285FC942450BB2100561ABA /* AuthButton.swift */; };
@@ -34,6 +35,7 @@
 		520876B4244E05760069FD6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		520876B6244E05760069FD6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		524B3BE5244F5B0A00179DD9 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		5260AD682454163C0055B62B /* LocationInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationInputView.swift; sourceTree = "<group>"; };
 		5285FC90245038DF00561ABA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		5285FC92245093CD00561ABA /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		5285FC942450BB2100561ABA /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			children = (
 				5285FC942450BB2100561ABA /* AuthButton.swift */,
 				52A513672453697A0034D116 /* LocationInputActivationView.swift */,
+				5260AD682454163C0055B62B /* LocationInputView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				5285FC93245093CD00561ABA /* SignUpController.swift in Sources */,
 				5285FC952450BB2100561ABA /* AuthButton.swift in Sources */,
 				52078ED12451E379004B9C12 /* HomeController.swift in Sources */,
+				5260AD692454163C0055B62B /* LocationInputView.swift in Sources */,
 				52A513682453697A0034D116 /* LocationInputActivationView.swift in Sources */,
 				520876A9244E05730069FD6C /* AppDelegate.swift in Sources */,
 				524B3BE6244F5B0A00179DD9 /* LoginController.swift in Sources */,
