@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 import MapKit
 
+private let reuseIdentifier = "LocationCell"
+
 class HomeController: UIViewController {
     
     // MARK: - Properties
@@ -19,6 +21,9 @@ class HomeController: UIViewController {
     
     private let inputActivationView = LocationInputActivationView()
     private let locationInputView = LocationInputView()
+    private let tableView = UITableView()
+    
+    private final let locationInputViewHeight: CGFloat = 200
        
     // MARK: - Lifecycle
     
@@ -68,6 +73,8 @@ class HomeController: UIViewController {
         UIView.animate(withDuration: 2) {
             self.inputActivationView.alpha = 1
         }
+        
+        configureTableView()
     }
     
     func configureMapView() {
@@ -85,7 +92,7 @@ class HomeController: UIViewController {
         locationInputView.anchor(top: view.topAnchor,
                                  left: view.leftAnchor,
                                  right: view.rightAnchor,
-                                 height: 200)
+                                 height: locationInputViewHeight)
         locationInputView.alpha = 0
         
         UIView.animate(withDuration: 0.5, animations: {
@@ -93,6 +100,22 @@ class HomeController: UIViewController {
         }) { _ in
             print("DEBUG: Present table view..")
         }
+    }
+    
+    func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.register(LocationCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.rowHeight = 60
+        
+        let height = view.frame.height - locationInputViewHeight
+        tableView.frame = CGRect(x: 0,
+                                 y: view.frame.height,
+                                 width: view.frame.width,
+                                 height: height)
+        
+        view.addSubview(tableView)
     }
 }
 
@@ -149,4 +172,17 @@ extension HomeController: LocationInputViewDelegate {
             }
         }
     }
+}
+
+extension HomeController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! LocationCell
+        return cell
+    }
+    
+    
 }
