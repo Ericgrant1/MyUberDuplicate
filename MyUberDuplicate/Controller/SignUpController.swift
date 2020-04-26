@@ -117,7 +117,7 @@ class SignUpController: UIViewController {
                           "fullname": fullname,
                           "accountType": accountTypeIndex] as [String : Any]
             
-            Database.database().reference().child("user").child(uid).updateChildValues(values) { (error, ref) in
+            Database.database().reference().child("users").child(uid).updateChildValues(values) { (error, ref) in
                 
                 guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return }
                 guard let controller = window.rootViewController as? HomeController else { return }
