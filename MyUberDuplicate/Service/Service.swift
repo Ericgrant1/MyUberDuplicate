@@ -37,8 +37,6 @@ struct Service {
                     driver.location = location
                     completion(driver)
                 }
-                print("DEBUG: Uid is \(uid)")
-                print("DEBUG: Location coordinates \(location.coordinate)")
             })
         }
     }
