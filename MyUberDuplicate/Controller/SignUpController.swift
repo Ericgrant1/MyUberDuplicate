@@ -98,8 +98,7 @@ class SignUpController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        
-        print("DEBUG: Location is \(location)")
+
     }
     
     // MARK: - Selectors
