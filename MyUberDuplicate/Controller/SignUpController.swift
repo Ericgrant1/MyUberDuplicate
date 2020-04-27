@@ -8,10 +8,13 @@
 
 import UIKit
 import Firebase
+import GeoFire
 
 class SignUpController: UIViewController {
     
     // MARK: - Properties
+    
+    private var location = LocationHandler.shared.locationManager.location
     
     private let tittleLabel: UILabel = {
            let label = UILabel()
@@ -95,6 +98,8 @@ class SignUpController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        
+        print("DEBUG: Location is \(location)")
     }
     
     // MARK: - Selectors
@@ -117,13 +122,16 @@ class SignUpController: UIViewController {
                           "fullname": fullname,
                           "accountType": accountTypeIndex] as [String : Any]
             
-            Database.database().reference().child("users").child(uid).updateChildValues(values) { (error, ref) in
+            if accountTypeIndex == 1 {
+                let geofire = GeoFire(firebaseRef: REF_DRIVER_LOCATIONS)
+                guard let location = self.location else { return }
                 
-                guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return }
-                guard let controller = window.rootViewController as? HomeController else { return }
-                controller.configureUI()
-                self.dismiss(animated: true, completion: nil)
+                geofire.setLocation(location, forKey: uid) { error in
+                    self.uploadUserDataAndShowHomeController(uid: uid, values: values)
+                }
             }
+            
+            self.uploadUserDataAndShowHomeController(uid: uid, values: values)
         }
     }
     
@@ -132,6 +140,15 @@ class SignUpController: UIViewController {
     }
     
     // MARK: - Helpers Functions
+    
+    func uploadUserDataAndShowHomeController(uid: String, values: [String: Any]) {
+        REF_USERS.child(uid).updateChildValues(values) { (error, ref) in
+            guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return }
+            guard let controller = window.rootViewController as? HomeController else { return }
+            controller.configureUI()
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
     
     func configureUI() {
         
