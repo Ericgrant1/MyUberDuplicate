@@ -56,6 +56,22 @@ class HomeController: UIViewController {
 //        signOut()
     }
     
+    // MARK: - Selectors
+    
+    @objc func actionButtonPressed() {
+        switch actionButtonConfig {
+        case .showMenu:
+            print("DEBUG: Handle show menu..")
+        case .dismissActionView:
+            print("DEBUG: Handle dismissal..")
+            
+            UIView.animate(withDuration: 0.3) {
+                self.inputActivationView.alpha = 1
+                self.configureActionButton(config: .showMenu)
+            }
+        }
+    }
+    
     // MARK: - API
     
     func fetchUserData() {
@@ -114,29 +130,23 @@ class HomeController: UIViewController {
         }
     }
     
-    // MARK: - Selectors
-    
-    @objc func actionButtonPressed() {
-        switch actionButtonConfig {
-        case .showMenu:
-            print("DEBUG: Handle show menu..")
-        case .dismissActionView:
-            print("DEBUG: Handle dismissal..")
-            
-            UIView.animate(withDuration: 0.3) {
-                self.inputActivationView.alpha = 1
-                self.actionButton.setImage(#imageLiteral(resourceName: "baseline_menu_black_36dp").withRenderingMode(.alwaysOriginal), for: .normal)
-                self.actionButtonConfig = .showMenu
-            }
-        }
-    }
-    
     // MARK: - Helper Functions
     
     func configure() {
         configureUI()
         fetchUserData()
         fetchDrivers()
+    }
+    
+    fileprivate func configureActionButton(config: ActionButtonConfiguration) {
+        switch config {
+        case .showMenu:
+            self.actionButton.setImage(#imageLiteral(resourceName: "baseline_menu_black_36dp").withRenderingMode(.alwaysOriginal), for: .normal)
+            self.actionButtonConfig = .showMenu
+        case .dismissActionView:
+            actionButton.setImage(#imageLiteral(resourceName: "baseline_arrow_back_black_36dp").withRenderingMode(.alwaysOriginal), for: .normal)
+            actionButtonConfig = .dismissActionView
+        }
     }
     
     func configureUI() {
@@ -333,8 +343,7 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedPlacemark = searchResults[indexPath.row]
         
-        actionButton.setImage(#imageLiteral(resourceName: "baseline_arrow_back_black_36dp").withRenderingMode(.alwaysOriginal), for: .normal)
-        actionButtonConfig = .dismissActionView
+        configureActionButton(config: .dismissActionView)
         
         dismissLocationView { _ in
             let annotation = MKPointAnnotation()
