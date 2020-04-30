@@ -63,7 +63,11 @@ class HomeController: UIViewController {
         case .showMenu:
             print("DEBUG: Handle show menu..")
         case .dismissActionView:
-            print("DEBUG: Handle dismissal..")
+            mapView.annotations.forEach { (annotation) in
+                if let anno = annotation as? MKPointAnnotation {
+                    mapView.removeAnnotation(anno)
+                }
+            }
             
             UIView.animate(withDuration: 0.3) {
                 self.inputActivationView.alpha = 1
