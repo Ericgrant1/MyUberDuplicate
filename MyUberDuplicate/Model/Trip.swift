@@ -8,8 +8,14 @@
 
 import CoreLocation
 
+enum TripState: Int {
+    case requested
+    case accepted
+    case inProgress
+    case completed
+}
+
 struct Trip {
-    
     var pickupCoordinates: CLLocationCoordinate2D!
     var destinationCoordinates: CLLocationCoordinate2D!
     let passangerUid: String!
@@ -37,11 +43,4 @@ struct Trip {
             self.state = TripState(rawValue: state)
         }
     }
-}
-
-enum TripState: Int {
-    case requested
-    case accepted
-    case inProgress
-    case completed
 }
