@@ -26,6 +26,7 @@
 		52C09B342455A9E30017411C /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C09B332455A9E30017411C /* Service.swift */; };
 		52C09B362455DC540017411C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C09B352455DC540017411C /* User.swift */; };
 		52E51123245B4201002FF84D /* RideActionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E51122245B4201002FF84D /* RideActionView.swift */; };
+		52EEADBF245C06B4008E87E3 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EEADBE245C06B4008E87E3 /* Trip.swift */; };
 		993F97F325C89C8B42862B3D /* Pods_MyUberDuplicate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D5C622F82036766216ECA3B /* Pods_MyUberDuplicate.framework */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		52C09B332455A9E30017411C /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		52C09B352455DC540017411C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		52E51122245B4201002FF84D /* RideActionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RideActionView.swift; sourceTree = "<group>"; };
+		52EEADBE245C06B4008E87E3 /* Trip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
 		976A2B025A2FE43A2B8DC91B /* Pods-MyUberDuplicate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyUberDuplicate.debug.xcconfig"; path = "Target Support Files/Pods-MyUberDuplicate/Pods-MyUberDuplicate.debug.xcconfig"; sourceTree = "<group>"; };
 		9D5C622F82036766216ECA3B /* Pods_MyUberDuplicate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyUberDuplicate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -149,6 +151,7 @@
 			children = (
 				52C09B352455DC540017411C /* User.swift */,
 				5218ECEC245740840004C69F /* DriverAnnotation.swift */,
+				52EEADBE245C06B4008E87E3 /* Trip.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				5285FC952450BB2100561ABA /* AuthButton.swift in Sources */,
 				52078ED12451E379004B9C12 /* HomeController.swift in Sources */,
 				5260AD692454163C0055B62B /* LocationInputView.swift in Sources */,
+				52EEADBF245C06B4008E87E3 /* Trip.swift in Sources */,
 				5218ECED245740840004C69F /* DriverAnnotation.swift in Sources */,
 				52A513682453697A0034D116 /* LocationInputActivationView.swift in Sources */,
 				520876A9244E05730069FD6C /* AppDelegate.swift in Sources */,
