@@ -469,7 +469,7 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
             self.mapView.selectAnnotation(annotation, animated: true)
     
             let annotations = self.mapView.annotations.filter( { !$0.isKind(of: DriverAnnotation.self) } )
-            self.mapView.zoomToFit(annotation: annotations)
+            self.mapView.zoomToFit(annotations: annotations)
             
             self.animateRideActionView(shouldShow: true, destination: selectedPlacemark)
         }
@@ -502,7 +502,18 @@ extension HomeController: RideActionViewDelegate {
 
 extension HomeController: PickupControllerDelegate {
     func didAcceptTrip(_ trip: Trip) {
-        self.trip?.state = .accepted
+        
+        let anno = MKPointAnnotation()
+        anno.coordinate = trip.pickupCoordinates
+        mapView.addAnnotation(anno)
+        mapView.selectAnnotation(anno, animated: true)
+        
+        let placemark = MKPlacemark(coordinate: trip.pickupCoordinates)
+        let mapItem = MKMapItem(placemark: placemark)
+        generatePolyline(toDestination: mapItem)
+
+        mapView.zoomToFit(annotations: mapView.annotations)
+        
         self.dismiss(animated: true, completion: nil)
     }
 }
