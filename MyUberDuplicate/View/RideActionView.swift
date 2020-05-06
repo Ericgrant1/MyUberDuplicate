@@ -82,19 +82,22 @@ class RideActionView: UIView {
         let view = UIView()
         view.backgroundColor = .black
         
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 30)
-        label.textColor = .white
-        label.text = "X"
-        
-        view.addSubview(label)
-        label.centerX(inview: view)
-        label.centerY(inview: view)
+        view.addSubview(infoViewLabel)
+        infoViewLabel.centerX(inview: view)
+        infoViewLabel.centerY(inview: view)
         
         return view
     }()
     
-    private let uberXLabel: UILabel = {
+    private let infoViewLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 30)
+        label.textColor = .white
+        label.text = "X"
+        return label
+    }()
+    
+    private let uberInfoLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18)
         label.text = "Uber X"
@@ -135,14 +138,14 @@ class RideActionView: UIView {
         infoView.setDimentions(height: 60, width: 60)
         infoView.layer.cornerRadius = 60 / 2
         
-        addSubview(uberXLabel)
-        uberXLabel.anchor(top: infoView.bottomAnchor, paddingTop: 8)
-        uberXLabel.centerX(inview: self)
+        addSubview(uberInfoLabel)
+        uberInfoLabel.anchor(top: infoView.bottomAnchor, paddingTop: 8)
+        uberInfoLabel.centerX(inview: self)
         
         let separatorView = UIView()
         separatorView.backgroundColor = .lightGray
         addSubview(separatorView)
-        separatorView.anchor(top: uberXLabel.bottomAnchor,
+        separatorView.anchor(top: uberInfoLabel.bottomAnchor,
                              left: leftAnchor,
                              right: rightAnchor,
                              paddingTop: 4, 
@@ -165,10 +168,21 @@ class RideActionView: UIView {
     // MARK: - Selectors
     
     @objc func actionButtonPressed() {
-        delegate?.uploadTrip(self)
+        switch buttonAction {
+        case .requestRide:
+            delegate?.uploadTrip(self)
+        case .cancel:
+            print("DEBUG: Handle cancel..")
+        case .getDirections:
+            print("DEBUG: Handle get directions..")
+        case .pickup:
+            print("DEBUG: Handle pickup..")
+        case .dropOff:
+            print("DEBUG: Handle drop off..")
+        }
     }
     
-    // MARK: Helper Functions
+    // MARK: - Helper Functions
     
     func configureUI(withConfig config: RideActionViewConfiguration) {
         switch config {
@@ -187,12 +201,38 @@ class RideActionView: UIView {
                 actionButton.setTitle(buttonAction.description, for: .normal)
                 titleLabel.text = "Driver En Route"
             }
+            
+            infoViewLabel.text = String(user.fullname.first ?? "X")
+            uberInfoLabel.text = user.fullname
+            
         case .pickupPassenger:
-            break
+            titleLabel.text = "Arrived At Passenger Location"
+            buttonAction = .pickup
+            actionButton.setTitle(buttonAction.description, for: .normal)
+            
         case .tripInProgress:
-            break
+            guard let user = user else { return }
+            
+            if user.accountType == .driver {
+                actionButton.setTitle("TRIP IN PROGRESS", for: .normal)
+                actionButton.isEnabled = false
+            } else {
+                buttonAction = .getDirections
+                actionButton.setTitle(buttonAction.description, for: .normal)
+            }
+            
+            titleLabel.text = "En Route To Destination"
+            
         case .endTrip:
-            break
+            guard let user = user else { return }
+            
+            if user.accountType == .driver {
+                actionButton.setTitle("ARRIVED AT DESTINATION", for: .normal)
+                actionButton.isEnabled = false
+            } else {
+                buttonAction = .dropOff
+                actionButton.setTitle(buttonAction.description, for: .normal)
+            }
         }
     }
 }
