@@ -544,6 +544,11 @@ extension HomeController: PickupControllerDelegate {
 
         mapView.zoomToFit(annotations: mapView.annotations)
         
+        Service.shared.observeTripCancelled(trip: trip) {
+            self.removeAnnotationsAndOverlays()
+            self.animateRideActionView(shouldShow: false)
+        }
+        
         self.dismiss(animated: true) {
             Service.shared.fetchUserData(uid: trip.passangerUid) { passenger in
                 self.animateRideActionView(shouldShow: true,
