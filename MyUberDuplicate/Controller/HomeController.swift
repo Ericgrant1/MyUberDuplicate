@@ -498,6 +498,7 @@ extension HomeController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - RideActionViewDelegate
 
 extension HomeController: RideActionViewDelegate {
+    
     func uploadTrip(_ view: RideActionView) {
         guard let pickupCoordinates = locationManager?.location?.coordinate else { return }
         guard let destinationCoordinates = view.destination?.coordinate else { return }
@@ -513,6 +514,16 @@ extension HomeController: RideActionViewDelegate {
             UIView.animate(withDuration: 0.3) {
                 self.rideActionView.frame.origin.y = self.view.frame.height
             }
+        }
+    }
+    
+    func cancelTrip() {
+        Service.shared.cancelTrip { (error, ref) in
+            if let error = error {
+                print("DEBUG: Error deleting trip..")
+                return
+            }
+            self.animateRideActionView(shouldShow: false)
         }
     }
 }
