@@ -65,7 +65,7 @@ struct Service {
     }
     
     func observeTripCancelled(trip: Trip, completion: @escaping () -> Void) {
-        REF_TRIPS.child(trip.passangerUid).observeSingleEvent(of: .childRemoved) { _ in
+        REF_TRIPS.child(trip.passengerUid).observeSingleEvent(of: .childRemoved) { _ in
             completion()
         }
     }
@@ -74,7 +74,7 @@ struct Service {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let values = ["driverUid": uid,
                       "state": TripState.accepted.rawValue] as [String : Any]
-        REF_TRIPS.child(trip.passangerUid).updateChildValues(values, withCompletionBlock: completion)
+        REF_TRIPS.child(trip.passengerUid).updateChildValues(values, withCompletionBlock: completion)
     }
     
     func observeCurrentTrip(completion: @escaping(Trip) -> Void) {
@@ -100,7 +100,7 @@ struct Service {
     }
     
     func updateTripState(trip: Trip, state: TripState) {
-        REF_TRIPS.child(trip.passangerUid).child("state").setValue(state.rawValue)
+        REF_TRIPS.child(trip.passengerUid).child("state").setValue(state.rawValue)
     }
 }
 

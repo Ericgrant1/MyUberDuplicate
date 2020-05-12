@@ -630,7 +630,7 @@ extension HomeController: PickupControllerDelegate {
         }
         
         self.dismiss(animated: true) {
-            Service.shared.fetchUserData(uid: trip.passangerUid) { passenger in
+            Service.shared.fetchUserData(uid: trip.passengerUid) { passenger in
                 self.animateRideActionView(shouldShow: true,
                                            config: .tripAccepted,
                                            user: passenger)
