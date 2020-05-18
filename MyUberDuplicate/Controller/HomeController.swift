@@ -138,7 +138,10 @@ class HomeController: UIViewController {
             case .arrivedAtDestination:
                 self.rideActionView.config = .endTrip
             case .completed:
-                break
+                self.animateRideActionView(shouldShow: false)
+                self.centerMapUserLocation()
+                self.configureActionButton(config: .showMenu)
+                self.presentAlertController(withTitle: "Trip Completed", message: "We hope you enjoyed you trip")
             }
         }
     }
@@ -640,6 +643,15 @@ extension HomeController: RideActionViewDelegate {
     
     func pickupPassenger() {
         startTrip()
+    }
+    
+    func dropOffPassenger() {
+        guard let trip = self.trip else { return }
+        Service.shared.updateTripState(trip: trip, state: .completed) { (err, ref) in
+            self.removeAnnotationsAndOverlays()
+            self.centerMapUserLocation()
+            self.animateRideActionView(shouldShow: false)
+        }
     }
 }
 
