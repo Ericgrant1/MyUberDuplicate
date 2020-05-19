@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContainerController: UITableViewController {
+class ContainerController: UIViewController {
     
     // MARK: - Properties
     
