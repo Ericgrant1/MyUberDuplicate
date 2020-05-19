@@ -21,6 +21,8 @@ class ContainerController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .backgroundColor
+        
         configureHomeController()
         configureMenuController()
     }
