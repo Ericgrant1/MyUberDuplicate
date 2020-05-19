@@ -12,6 +12,13 @@ class MenuHeader: UIView {
     
     // MARK: - Properties
     
+    var user: User? {
+        didSet {
+            fullnameLabel.text = user?.fullname
+            emailLabel.text = user?.email
+        }
+    }
+    
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.backgroundColor = .lightGray
@@ -22,7 +29,6 @@ class MenuHeader: UIView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .white
-        label.text = "Eric Grant"
         return label
     }()
     
@@ -30,7 +36,6 @@ class MenuHeader: UIView {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .lightGray
-        label.text = "eric@grant.com"
         return label
     }()
     
