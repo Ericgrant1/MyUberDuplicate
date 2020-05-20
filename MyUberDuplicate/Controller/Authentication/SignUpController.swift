@@ -143,7 +143,7 @@ class SignUpController: UIViewController {
     func uploadUserDataAndShowHomeController(uid: String, values: [String: Any]) {
         REF_USERS.child(uid).updateChildValues(values) { (error, ref) in
             guard let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) else { return }
-            guard let controller = window.rootViewController as? HomeController else { return }
+            guard let controller = window.rootViewController as? ContainerController else { return }
             controller.configure()
             self.dismiss(animated: true, completion: nil)
         }

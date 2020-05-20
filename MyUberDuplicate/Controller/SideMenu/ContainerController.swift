@@ -30,14 +30,24 @@ class ContainerController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .backgroundColor
-        configureHomeController()
-        fetchUserData()
+        checkIfUserIsLoggedIn()
     }
     
     // MARK: - Selectors
     
     // MARK: - API
+    
+    func checkIfUserIsLoggedIn() {
+        if Auth.auth().currentUser?.uid == nil {
+            DispatchQueue.main.async {
+                let nav = UINavigationController(rootViewController: LoginController())
+                nav.modalPresentationStyle = .fullScreen
+                self.present(nav, animated: true, completion: nil)
+            }
+        } else {
+            configure()
+        }
+    }
     
     func fetchUserData() {
         guard let currentUid = Auth.auth().currentUser?.uid else { return }
@@ -61,6 +71,12 @@ class ContainerController: UIViewController {
     }
     
     // MARK: - Helper Functions
+    
+    func configure() {
+        view.backgroundColor = .backgroundColor
+        configureHomeController()
+        fetchUserData()
+    }
     
     func configureHomeController() {
         addChild(homeController)
