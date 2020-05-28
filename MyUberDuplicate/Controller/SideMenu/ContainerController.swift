@@ -22,7 +22,6 @@ class ContainerController: UIViewController {
     private var user: User? {
         didSet {
             guard let user = user else { return }
-            print("DEBUG: User home location is \(user.homeLocation)")
             homeController.user = user
             configureMenuController(withUser: user)
         }
